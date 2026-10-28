@@ -1,0 +1,49 @@
+# .gitignore – files git should never track.
+# Git only treats "#" as a comment at the start of a line, so each comment sits
+# on the line above the rule it explains.
+# Docs: https://git-scm.com/docs/gitignore
+
+# ---- Secrets ----
+# Holds the Supabase keys and other secrets. Must never be committed.
+.env
+# Variants such as .env.local or .env.test hold secrets too.
+.env.*
+# "!" re-includes a file. .env.example holds variable names with no real values, so it is safe to share.
+!.env.example
+
+# ---- Node.js / React ----
+# Installed packages. Huge, and npm install rebuilds them from package.json.
+node_modules/
+# Build output (e.g. from Vite). Generated from source, so no need to store it.
+dist/
+# Build output under its other common name (e.g. Create React App). Also generated.
+build/
+# Test coverage reports from Jest. Regenerated every time the tests run.
+coverage/
+
+# ---- Python (Raspberry Pi node) ----
+# Compiled bytecode folders Python creates on its own when it runs.
+__pycache__/
+# Single compiled bytecode files (.pyc, .pyo, .pyd). Also created automatically.
+*.py[cod]
+# pytest's cache of previous test runs. Regenerated automatically.
+.pytest_cache/
+# Virtual environment (common name). Holds installed packages that are rebuilt from requirements.txt.
+.venv/
+# Virtual environment (other common name). Same reason.
+venv/
+
+# ---- ESP-IDF (ESP32-CAM node) ----
+# Backup ESP-IDF writes when menuconfig changes sdkconfig. The real sdkconfig is still tracked.
+sdkconfig.old
+
+# ---- ESP-IDF dependencies ----
+# Libraries the ESP-IDF component manager downloads (e.g. the MQTT client).
+# Re-downloaded on build; the dependencies.lock file that pins their versions IS tracked.
+managed_components/
+
+# ---- Logs and system clutter ----
+# Log files written while running or testing.
+*.log
+# Thumbnail cache Windows creates in folders of images (e.g. the dataset).
+Thumbs.db
